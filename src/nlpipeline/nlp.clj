@@ -1,8 +1,7 @@
 """Interface for Stanford NLP Tools"""
 
 (ns nlpipeline.nlp
-  (:gen-class)
-  (require [clojure.data.json :as json]))
+  (:gen-class))
 
 
 (import java.util.Properties)
@@ -58,15 +57,14 @@
   (map extract-tokens (get-field doc-ann :sentences)))
 
 
+(defn process-doc
+  ([doc-text] (process-doc doc-text "tokenize,ssplit,pos,lemma"))
+
+  ([doc-text annotations]
+  (let [pipe (make-pipeline annotations)]
+    (extract-doc (.process pipe doc-text)))))
+
+
 (defn -main
-  "Print a JSON representation of the document at the 0th argument."
-  [& args]
-  (println args)
-  (let [text (second args)
-        anns "tokenize, ssplit, pos, lemma"
-        pipe (make-pipeline anns)
-        java-doc (.process pipe text)
-        doc (extract-doc java-doc)
-        js (json/write-str doc)]
-    (println (format "Text: %s" text))
-    (println js)))
+  "Print the processed document at the 0th argument."
+  [& args] (println (process-doc (second args))))
