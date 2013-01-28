@@ -1,19 +1,51 @@
 # nlpipeline
 
-FIXME
+Thin wrapper around the Stanford NLP tools and a web service exposing them.
 
-## Prerequisites
 
-You will need [Leiningen][1] 1.7.0 or above installed.
+Example Usage
+-------------
+Using [httpie](https://github.com/jkbr/httpie):
 
-[1]: https://github.com/technomancy/leiningen
+```
+$ echo "I am Reggie Miller." | http POST http://localhost:3000/document/
+HTTP/1.1 200 OK
+Content-Length: 208
+Content-Type: application/json;charset=ISO-8859-1
+Date: Sun, 27 Jan 2013 07:13:06 GMT
+Server: Jetty(7.6.1.v20120215)
 
-## Running
+[
+    [
+        {
+            "lemma": "I", 
+            "pos": "PRP", 
+            "text": "I"
+        }, 
+        {
+            "lemma": "be", 
+            "pos": "VBP", 
+            "text": "am"
+        }, 
+        {
+            "lemma": "Reggie", 
+            "pos": "NNP", 
+            "text": "Reggie"
+        }, 
+        {
+            "lemma": "Miller", 
+            "pos": "NNP", 
+            "text": "Miller"
+        }, 
+        {
+            "lemma": ".", 
+            "pos": ".", 
+            "text": "."
+        }
+    ]
+]
+```
 
-To start a web server for the application, run:
-
-    lein ring server
-
-## License
-
-Copyright © 2013 FIXME
+TODO
+----
+* Get the model files from Maven instead of storing them locally
