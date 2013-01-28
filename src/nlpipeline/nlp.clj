@@ -34,6 +34,7 @@
 ;TODO: Get the models down from Maven, or at least don't use an absolute path
 (def pos-model-path "/Users/cpollock/code/yelp-dev/nlpipeline/resources/english-left3words-distsim.tagger")
 
+
 (defn make-pipeline
   "Instantiate and return a StanfordCoreNLP object."
   [annotators]
@@ -41,6 +42,8 @@
     (.setProperty props "annotators" annotators)
     (.setProperty props "pos.model" pos-model-path)
     (StanfordCoreNLP. props true)))
+
+(def default-pipeline (make-pipeline "tokenize,ssplit,pos,lemma"))
 
 (defn extract-tokens
   "Extract the text, POS, and lemma for each token in the sentence."
@@ -51,6 +54,7 @@
       "lemma" (get-field tok :lemma)})
     (get-field sent :tokens)))
 
+
 (defn extract-doc
   "Return a list of sentences. Each token in each sentence is a map"
   [doc-ann]
@@ -58,11 +62,8 @@
 
 
 (defn process-doc
-  ([doc-text] (process-doc doc-text "tokenize,ssplit,pos,lemma"))
-
-  ([doc-text annotations]
-  (let [pipe (make-pipeline annotations)]
-    (extract-doc (.process pipe doc-text)))))
+  ([doc-text pipeline] (extract-doc (.process pipeline doc-text)))
+  ([doc-text] (process-doc doc-text default-pipeline)))
 
 
 (defn -main

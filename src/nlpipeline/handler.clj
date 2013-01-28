@@ -13,7 +13,7 @@
           doc (nlpipeline.nlp/process-doc text)]
       {:status 200
        :headers {"Content-Type" "application/json"}
-       :body doc}))
+       :body (json/write-str doc)}))
 
   (route/not-found "Not Found"))
 
