@@ -31,16 +31,11 @@
   (.get annotation (annotation2class child-type)))
 
 
-;TODO: Get the models down from Maven, or at least don't use an absolute path
-(def pos-model-path "/Users/cpollock/code/yelp-dev/nlpipeline/resources/english-left3words-distsim.tagger")
-
-
 (defn make-pipeline
   "Instantiate and return a StanfordCoreNLP object."
   [annotators]
   (let [props (java.util.Properties.)]
     (.setProperty props "annotators" annotators)
-    (.setProperty props "pos.model" pos-model-path)
     (StanfordCoreNLP. props true)))
 
 (def default-pipeline (make-pipeline "tokenize,ssplit,pos,lemma"))

@@ -48,4 +48,3 @@ Server: Jetty(7.6.1.v20120215)
 
 TODO
 ----
-* Get the model files from Maven instead of storing them locally
