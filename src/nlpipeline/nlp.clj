@@ -59,7 +59,7 @@
 (defn process-doc
   "Run a pipeline over the input document text. Return a list of sentences. Each
   sentence is a list of tokens, and each token is a map from token attributes to
-  values. For example: {"text" "was", "lemma" "be", "pos" "VBD"}.
+  values. For example: {\"text\" \"was\", \"lemma\" \"be\", \"pos\" \"VBD\"}."
 
   ([doc-text pipeline] (extract-doc (.process pipeline doc-text)))
   ([doc-text] (process-doc doc-text default-pipeline)))
