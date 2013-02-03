@@ -59,8 +59,3 @@
 (defn process-doc
   ([doc-text pipeline] (extract-doc (.process pipeline doc-text)))
   ([doc-text] (process-doc doc-text default-pipeline)))
-
-
-(defn -main
-  "Print the processed document at the 0th argument."
-  [& args] (println (process-doc (second args))))
