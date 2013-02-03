@@ -14,6 +14,16 @@
       {:status 200
        :headers {"Content-Type" "application/json"}
        :body (json/write-str doc)}))
+   (GET "/" []
+     {:status 200    
+      :headers {"Content-Type" "text/html"}
+      :body "
+      <html>
+      <head><title>NLPipeline</title></head>
+      <body>
+        Try posting a string to /document/
+      </body>
+      </html>"})
 
   (route/not-found "Not Found"))
 
