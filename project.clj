@@ -1,6 +1,6 @@
 (defproject nlpipeline "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "Exposing some of the Stanford NLP tools as a web service"
+  :url "https://github.com/colinpollock/nlpipeline"
   :dependencies [[org.clojure/clojure "1.4.0"]
                  [compojure "1.1.5"]
                  [org.clojure/data.json "0.2.0"]

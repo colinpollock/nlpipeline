@@ -5,15 +5,20 @@ Thin wrapper around the Stanford NLP tools and a web service exposing them.
 
 Example Usage
 -------------
-Using [httpie](https://github.com/jkbr/httpie):
 
+### Running Locally
+```$ lein ring server```
+
+
+### Using [httpie](https://github.com/jkbr/httpie):
 ```
-$ echo "I am Reggie Miller." | http POST http://localhost:3000/document/
+$ echo "I am Reggie Miller." | http POST  http://nlpipeline.herokuapp.com/document/
 HTTP/1.1 200 OK
-Content-Length: 208
+Connection: keep-alive
 Content-Type: application/json;charset=ISO-8859-1
-Date: Sun, 27 Jan 2013 07:13:06 GMT
+Date: Sun, 03 Feb 2013 22:22:43 GMT
 Server: Jetty(7.6.1.v20120215)
+transfer-encoding: chunked
 
 [
     [
@@ -48,3 +53,8 @@ Server: Jetty(7.6.1.v20120215)
 
 TODO
 ----
+* Tests
+* Handle sentence, not just full document
+* Optionally pass in a config specifying which pipes to use
+* Add constituency and dependency parsers
+* Profiling (time per doc etc.)

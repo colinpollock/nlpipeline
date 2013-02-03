@@ -51,11 +51,15 @@
 
 
 (defn extract-doc
-  "Return a list of sentences. Each token in each sentence is a map"
+  "Extract attributes from a Stanford document annotation."
   [doc-ann]
   (map extract-tokens (get-field doc-ann :sentences)))
 
 
 (defn process-doc
+  "Run a pipeline over the input document text. Return a list of sentences. Each
+  sentence is a list of tokens, and each token is a map from token attributes to
+  values. For example: {"text" "was", "lemma" "be", "pos" "VBD"}.
+
   ([doc-text pipeline] (extract-doc (.process pipeline doc-text)))
   ([doc-text] (process-doc doc-text default-pipeline)))
